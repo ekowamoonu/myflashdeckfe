@@ -22,7 +22,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               <Link to="/overview" className="">
                 <li
                   className="flex items-center text-white justify-start gap-6 cursor-pointer transition-all
-                 py-3 pl-6 hover:bg-white hover:text-black active:bg-slate-500
+                 py-3 pl-6 hover:bg-[#e7edee] hover:text-black active:bg-slate-500
                 "
                 >
                   <LayoutDashboard />
@@ -32,7 +32,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               <Link to="/vehicle-profiles" className="">
                 <li
                   className="flex items-center text-white justify-start gap-6 cursor-pointer transition-all
-                 py-3 pl-6 hover:bg-white hover:text-black active:bg-slate-500
+                 py-3 pl-6 hover:bg-[#e7edee] hover:text-black active:bg-slate-500
                 "
                 >
                   <Car />
@@ -42,7 +42,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               <Link to="/maintenance" className="">
                 <li
                   className="flex items-center text-white justify-start gap-6 cursor-pointer transition-all
-                 py-3 pl-6 hover:bg-white hover:text-black active:bg-slate-500
+                 py-3 pl-6 hover:bg-[#e7edee] hover:text-black active:bg-slate-500
                 "
                 >
                   <Settings />
@@ -52,7 +52,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               <Link to="/expenses" className="">
                 <li
                   className="flex items-center text-white justify-start gap-6 cursor-pointer transition-all
-                 py-3 pl-6 hover:bg-white hover:text-black active:bg-slate-500
+                 py-3 pl-6 hover:bg-[#e7edee] hover:text-black active:bg-slate-500
                 "
                 >
                   <CircleDollarSign />
@@ -62,7 +62,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               <Link to="/fuel-tracking" className="">
                 <li
                   className="flex items-center text-white justify-start gap-6 cursor-pointer transition-all
-                 py-3 pl-6 hover:bg-white hover:text-black active:bg-slate-500
+                 py-3 pl-6 hover:bg-[#e7edee] hover:text-black active:bg-slate-500
                 "
                 >
                   <Fuel />
@@ -78,7 +78,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
       {/* content */}
       <div className="ml-64 flex-1">
-        <div className="w-full bg-white p-10 h-full">{children}</div>
+        <div className="w-full bg-[#e7edee] p-10 min-h-svh">{children}</div>
       </div>
     </div>
   );
