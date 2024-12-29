@@ -15,7 +15,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         {/* links */}
         <div className="links">
           <div className="logo">
-            <img src="" alt="" />
+            <img src="images/logo.svg" alt="Logo" />
           </div>
           <div className="mt-6 text-md">
             <ul className="text-sm">
