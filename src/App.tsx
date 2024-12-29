@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import NotAuthenicatedCheck from "./core/middleware/NotAuthenticatedCheck";
 import { LoginForm } from "./core/pages/auth/Login";
@@ -11,12 +11,13 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<NotAuthenicatedCheck />}>
+          <Route path="/" element={<Navigate to="/overview" />} />
+          <Route element={<NotAuthenicatedCheck />}>
             <Route path="login" element={<LoginForm />} />
             <Route path="signup" element={<SignupForm />} />
           </Route>
-          <Route path="/" element={<AuthenicatedCheck />}>
-            <Route path="overview" element={<Overview />} />
+          <Route element={<AuthenicatedCheck />}>
+            <Route index path="overview" element={<Overview />} />
           </Route>
         </Routes>
       </BrowserRouter>
