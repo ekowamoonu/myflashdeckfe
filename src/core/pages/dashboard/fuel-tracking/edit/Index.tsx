@@ -20,26 +20,27 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+
 //import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import DashboardTitle from "@/core/shared-components/DashboardTitle";
-import { ArrowLeft, CalendarIcon, CheckCircleIcon } from "lucide-react";
+import { ArrowLeft, CalendarIcon, Save } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
+
 const Index = () => {
   const form = useForm();
 
   return (
     <>
-      <DashboardTitle>Add New Maintenance Record</DashboardTitle>
+      <DashboardTitle>Edit Fuel Record #45</DashboardTitle>
       <div className="bg-white mt-6 p-6 rounded-md">
         <div className="flex">
           <Button asChild size="lg" variant="secondary">
-            <Link to="/maintenance">
+            <Link to="/fuel-tracking">
               {" "}
-              <ArrowLeft /> Back to All Maintenance Records
+              <ArrowLeft /> Back to All Fuel Records
             </Link>
           </Button>
         </div>
@@ -66,10 +67,10 @@ const Index = () => {
 
                 <FormField
                   control={form.control}
-                  name="category"
+                  name="vehicle"
                   render={({ field }) => (
                     <FormItem className="space-y-1 mb-2">
-                      <FormLabel>Category</FormLabel>
+                      <FormLabel>Vehicle</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
@@ -97,14 +98,14 @@ const Index = () => {
 
                 <FormField
                   control={form.control}
-                  name="comments"
+                  name="litres"
                   render={({ field }) => (
                     <FormItem className="space-y-1 mb-3">
-                      <FormLabel>Comments</FormLabel>
+                      <FormLabel>Litres</FormLabel>
                       <FormControl>
-                        <Textarea
-                          placeholder="Additional information about the maintenance performed"
-                          className="resize-none"
+                        <Input
+                          className="mt-[100px]"
+                          placeholder="Red Ferrari"
                           {...field}
                         />
                       </FormControl>
@@ -113,11 +114,11 @@ const Index = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="maintenanceDate"
+                  name="purchaseDate"
                   render={({ field }) => (
                     <FormItem className="space-y-1 mb-2">
                       <FormLabel className="block mb-1">
-                        Maintenance Date
+                        Purchase Date
                       </FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
@@ -155,7 +156,7 @@ const Index = () => {
                 />
 
                 <Button className="mt-6">
-                  <CheckCircleIcon /> Add New Record
+                  <Save /> Save Changes
                 </Button>
               </div>
             </div>

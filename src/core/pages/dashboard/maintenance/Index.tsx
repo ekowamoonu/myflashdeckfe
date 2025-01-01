@@ -39,7 +39,7 @@ const Index = () => {
       <div className="bg-white mt-6 p-6 rounded-md">
         <div className="flex justify-end mb-6 ">
           <Button asChild size="lg">
-            <Link to="/vehicle-profiles/create">
+            <Link to="/maintenance/create">
               <CirclePlus /> Add New Record
             </Link>
           </Button>

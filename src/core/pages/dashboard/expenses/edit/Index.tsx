@@ -23,17 +23,18 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 //import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import DashboardTitle from "@/core/shared-components/DashboardTitle";
-import { ArrowLeft, CalendarIcon, CheckCircleIcon } from "lucide-react";
+import { ArrowLeft, CalendarIcon, Save } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
+
 const Index = () => {
   const form = useForm();
 
   return (
     <>
-      <DashboardTitle>Add New Maintenance Record</DashboardTitle>
+      <DashboardTitle>Edit Maintenance Record #45</DashboardTitle>
       <div className="bg-white mt-6 p-6 rounded-md">
         <div className="flex">
           <Button asChild size="lg" variant="secondary">
@@ -155,7 +156,7 @@ const Index = () => {
                 />
 
                 <Button className="mt-6">
-                  <CheckCircleIcon /> Add New Record
+                  <Save /> Save Changes
                 </Button>
               </div>
             </div>
