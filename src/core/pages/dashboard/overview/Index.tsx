@@ -105,7 +105,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white mt-6 p-3 rounded-md">
+      <div className="bg-white mt-6 p-6 rounded-md">
         <div className="flex flex-row gap-6">
           <div className="w-[30%]">
             <h1 className="font-semibold mb-3">Quick actions</h1>

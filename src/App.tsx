@@ -6,8 +6,12 @@ import SignupForm from "./core/pages/auth/Signup";
 import AuthenicatedCheck from "./core/middleware/AuthenticatedCheck";
 import Overview from "./core/pages/dashboard/overview/Index";
 import VehicleProfiles from "./core/pages/dashboard/vehicle_profiles/Index";
+import CreateNewVehicleProfile from "./core/pages/dashboard/vehicle_profiles/create/Index";
+import EditVehicleProfile from "./core/pages/dashboard/vehicle_profiles/edit/Index";
 import Expenses from "./core/pages/dashboard/expenses/Index";
 import Maintenance from "./core/pages/dashboard/maintenance/Index";
+import CreateNewMaintenanceRecord from "./core/pages/dashboard/maintenance/create/Index";
+import EditMaintenanceRecord from "./core/pages/dashboard/maintenance/edit/Index";
 import FuelTracking from "./core/pages/dashboard/fuel-tracking/Index";
 function App() {
   return (
@@ -21,9 +25,24 @@ function App() {
           </Route>
           <Route element={<AuthenicatedCheck />}>
             <Route index path="overview" element={<Overview />} />
-            <Route path="vehicle-profiles" element={<VehicleProfiles />} />
+            {/* vehicle profiles */}
+            <Route path="vehicle-profiles">
+              <Route index element={<VehicleProfiles />} />
+              <Route path="create" element={<CreateNewVehicleProfile />} />
+              <Route path="details/:id" element={<EditVehicleProfile />} />
+            </Route>
+
+            {/* expenses */}
             <Route path="expenses" element={<Expenses />} />
-            <Route path="maintenance" element={<Maintenance />} />
+
+            {/* maintenance */}
+            <Route path="maintenance">
+              <Route index element={<Maintenance />} />
+              <Route path="create" element={<CreateNewMaintenanceRecord />} />
+              <Route path="details/:id" element={<EditMaintenanceRecord />} />
+            </Route>
+
+            {/* fuel tracking */}
             <Route path="fuel-tracking" element={<FuelTracking />} />
           </Route>
         </Routes>
