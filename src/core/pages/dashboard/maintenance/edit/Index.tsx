@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { format } from "date-fns";
 import {
   Form,
   FormControl,
@@ -7,37 +8,52 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 //import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import DashboardTitle from "@/core/shared-components/DashboardTitle";
-import { ArrowLeft, Save } from "lucide-react";
+import { ArrowLeft, CalendarIcon, Save } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { cn } from "@/lib/utils";
+import { Calendar } from "@/components/ui/calendar";
 
 const Index = () => {
   const form = useForm();
 
   return (
     <>
-      <DashboardTitle>Edit Vehicle</DashboardTitle>
+      <DashboardTitle>Edit Maintenance Record #45</DashboardTitle>
       <div className="bg-white mt-6 p-6 rounded-md">
         <div className="flex">
           <Button asChild size="lg" variant="secondary">
-            <Link to="/vehicle-profiles">
+            <Link to="/maintenance">
               {" "}
-              <ArrowLeft /> Back to All Vehicles
+              <ArrowLeft /> Back to All Maintenance Records
             </Link>
           </Button>
         </div>
         <div className="mt-6">
           <Form {...form}>
-            <div className="grid grid-cols-3  gap-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2  gap-10">
               <div>
                 <FormField
                   control={form.control}
-                  name="name"
+                  name="amount"
                   render={({ field }) => (
                     <FormItem className="space-y-1 mb-2">
-                      <FormLabel>Vehicle name</FormLabel>
+                      <FormLabel>Amount</FormLabel>
                       <FormControl>
                         <Input
                           className="mt-[100px]"
@@ -51,56 +67,90 @@ const Index = () => {
 
                 <FormField
                   control={form.control}
-                  name="make"
+                  name="category"
                   render={({ field }) => (
                     <FormItem className="space-y-1 mb-2">
-                      <FormLabel>Make</FormLabel>
-                      <FormControl>
-                        <Input placeholder="S8970" {...field} />
-                      </FormControl>
+                      <FormLabel>Category</FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select a verified email to display" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="m@example.com">
+                            Tire change
+                          </SelectItem>
+                          <SelectItem value="m@google.com">
+                            Oil change
+                          </SelectItem>
+                          <SelectItem value="m@support.com">
+                            Coolant change
+                          </SelectItem>
+                        </SelectContent>
+                      </Select>
                     </FormItem>
                   )}
                 />
 
                 <FormField
                   control={form.control}
-                  name="modelYear"
+                  name="comments"
                   render={({ field }) => (
-                    <FormItem className="space-y-1 mb-2">
-                      <FormLabel>Model Year</FormLabel>
+                    <FormItem className="space-y-1 mb-3">
+                      <FormLabel>Comments</FormLabel>
                       <FormControl>
-                        <Input placeholder="2024" {...field} />
+                        <Textarea
+                          placeholder="Additional information about the maintenance performed"
+                          className="resize-none"
+                          {...field}
+                        />
                       </FormControl>
                     </FormItem>
                   )}
                 />
                 <FormField
                   control={form.control}
-                  name="licensePlate"
+                  name="maintenanceDate"
                   render={({ field }) => (
                     <FormItem className="space-y-1 mb-2">
-                      <FormLabel>License Plate</FormLabel>
-                      <FormControl>
-                        <Input placeholder="GX-183847" {...field} />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div>
-                <div className="aspect-square bg-[#eee] mt-6 rounded-md overflow-hidden">
-                  <img src="/images/car1.avif" />
-                </div>
-
-                <FormField
-                  control={form.control}
-                  name="photo"
-                  render={({ field }) => (
-                    <FormItem className="space-y-1 mb-2 mt-6">
-                      <FormLabel>Change Photo</FormLabel>
-                      <FormControl>
-                        <Input type="file" {...field} />
-                      </FormControl>
+                      <FormLabel className="block mb-1">
+                        Maintenance Date
+                      </FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant={"outline"}
+                              className={cn(
+                                "w-full pl-3 text-left font-normal",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value ? (
+                                format(field.value, "PPP")
+                              ) : (
+                                <span>Pick a date</span>
+                              )}
+                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            disabled={(date) =>
+                              date > new Date() || date < new Date("1900-01-01")
+                            }
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
                     </FormItem>
                   )}
                 />
