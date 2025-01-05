@@ -34,13 +34,13 @@ const Index = () => {
 
   return (
     <>
-      <DashboardTitle>Edit Maintenance Record #45</DashboardTitle>
+      <DashboardTitle>Edit Expenses Record #45</DashboardTitle>
       <div className="bg-white mt-6 p-6 rounded-md">
         <div className="flex">
           <Button asChild size="lg" variant="secondary">
-            <Link to="/maintenance">
+            <Link to="/expenses">
               {" "}
-              <ArrowLeft /> Back to All Maintenance Records
+              <ArrowLeft /> Back to All Expenses Records
             </Link>
           </Button>
         </div>
@@ -114,12 +114,10 @@ const Index = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="maintenanceDate"
+                  name="expenseDate"
                   render={({ field }) => (
                     <FormItem className="space-y-1 mb-2">
-                      <FormLabel className="block mb-1">
-                        Maintenance Date
-                      </FormLabel>
+                      <FormLabel className="block mb-1">Expense Date</FormLabel>
                       <Popover>
                         <PopoverTrigger asChild>
                           <FormControl>
