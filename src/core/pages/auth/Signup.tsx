@@ -6,10 +6,19 @@ import {
   CardDescription,
   CardContent,
 } from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@radix-ui/react-label";
+import { useForm } from "react-hook-form";
 
 const SignupForm = () => {
+  const form = useForm();
+
   return (
     <div className="flex flex-col gap-6 justify-center items-center min-h-svh">
       <Card>
@@ -20,31 +29,53 @@ const SignupForm = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
-            <div className="flex flex-col gap-6">
+          <Form {...form}>
+            <div className="flex flex-col gap-3">
               <div className="grid gap-2">
-                <Label htmlFor="email">Name</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem className="space-y-1">
+                      <FormLabel>Name</FormLabel>
+                      <FormControl>
+                        <Input
+                          className="mt-[100px]"
+                          placeholder="Gilbert Blankson-Afful"
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
                 />
               </div>
               <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                  required
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem className="space-y-1 mb-2">
+                      <FormLabel htmlFor="email">Email</FormLabel>
+                      <Input
+                        {...field}
+                        type="email"
+                        placeholder="m@example.com"
+                      />
+                    </FormItem>
+                  )}
                 />
               </div>
               <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                </div>
-                <Input id="password" type="password" required />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem className="space-y-1 mb-2">
+                      <FormLabel>Password</FormLabel>
+                      <Input {...field} type="password" />
+                    </FormItem>
+                  )}
+                />
               </div>
               <Button type="submit" className="w-full">
                 Create my free account
@@ -56,7 +87,7 @@ const SignupForm = () => {
                 Login here
               </a>
             </div>
-          </form>
+          </Form>
         </CardContent>
       </Card>
     </div>

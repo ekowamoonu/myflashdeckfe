@@ -17,7 +17,14 @@ import EditMaintenanceRecord from "./core/pages/dashboard/maintenance/edit/Index
 import FuelTracking from "./core/pages/dashboard/fuel-tracking/Index";
 import CreateNewFuelRecord from "./core/pages/dashboard/fuel-tracking/create/Index";
 import EditFuelRecord from "./core/pages/dashboard/fuel-tracking/edit/Index";
+import axios from "axios";
 function App() {
+  axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
+  axios.defaults.headers.common["Content-Type"] = "application/json";
+  axios.defaults.headers.common[
+    "Authorization"
+  ] = `Bearer ${localStorage.getItem("auth_token")}`;
+
   return (
     <>
       <BrowserRouter>
