@@ -14,14 +14,14 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { IErrorResponse } from "@/core/interfaces/IErrorResponse";
+import { processApiCallErrors } from "@/core/helpers/helpers";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { z } from "zod";
 
 const formSchema = z.object({
@@ -48,15 +48,7 @@ export function LoginForm() {
       localStorage.setItem("auth_token", response.data.token);
       navigate("/overview");
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        (error.response?.data as IErrorResponse).message.forEach((message) => {
-          toast(message, { type: "error" });
-        });
-      } else if (error instanceof Error) {
-        console.log(error.message);
-      } else {
-        console.log(error);
-      }
+      processApiCallErrors(error);
     } finally {
       setIsLoading(false);
     }

@@ -20,9 +20,9 @@ import { z } from "zod";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import { IErrorResponse } from "@/core/interfaces/IErrorResponse";
+import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { processApiCallErrors } from "@/core/helpers/helpers";
 
 const formSchema = z.object({
   name: z.string(),
@@ -53,15 +53,7 @@ const SignupForm = () => {
       localStorage.setItem("auth_token", response.data.token);
       navigate("/overview");
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        (error.response?.data as IErrorResponse).message.forEach((message) => {
-          toast(message, { type: "error" });
-        });
-      } else if (error instanceof Error) {
-        console.log(error.message);
-      } else {
-        console.log(error);
-      }
+      processApiCallErrors(error);
     } finally {
       setIsLoading(false);
     }
