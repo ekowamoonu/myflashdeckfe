@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  Car,
-  CircleDollarSign,
-  Fuel,
-  LayoutDashboard,
-  Settings,
-} from "lucide-react";
+import { Car, CircleDollarSign, LayoutDashboard } from "lucide-react";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -39,16 +33,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                   <span>Vehicle Profiles</span>
                 </li>
               </Link>
-              <Link to="/maintenance" className="">
-                <li
-                  className="flex items-center text-white justify-start gap-6 cursor-pointer transition-all
-                 py-3 pl-6 hover:bg-[#e7edee] hover:text-black active:bg-slate-500
-                "
-                >
-                  <Settings />
-                  <span>Maintenance</span>
-                </li>
-              </Link>
               <Link to="/expenses" className="">
                 <li
                   className="flex items-center text-white justify-start gap-6 cursor-pointer transition-all
@@ -57,16 +41,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 >
                   <CircleDollarSign />
                   <span>Expenses</span>
-                </li>
-              </Link>
-              <Link to="/fuel-tracking" className="">
-                <li
-                  className="flex items-center text-white justify-start gap-6 cursor-pointer transition-all
-                 py-3 pl-6 hover:bg-[#e7edee] hover:text-black active:bg-slate-500
-                "
-                >
-                  <Fuel />
-                  <span>Fuel Tracking</span>
                 </li>
               </Link>
             </ul>

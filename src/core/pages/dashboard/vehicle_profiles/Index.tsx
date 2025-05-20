@@ -18,10 +18,10 @@ const Index = () => {
     const getVehicleProfiles = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get<IVehicleProfile[]>(
+        const response = await axios.get<{ data: IVehicleProfile[] }>(
           "/vehicle-profiles"
         );
-        setVehicleProfiles(response.data);
+        setVehicleProfiles(response.data.data);
       } catch (error) {
         processApiCallErrors(error);
       } finally {
@@ -49,34 +49,39 @@ const Index = () => {
           <p className="mt-6 flex items-center justify-center">
             <Loader />
           </p>
-        ) : vehicleProfiles.length > 0 ? (
-          vehicleProfiles.map(() => {
-            return (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-5">
-                <Link to="/vehicle-profiles/details/1">
-                  <Card className="hover:border-slate-700">
-                    <CardHeader className="p-0 aspect-square bg-[#eee] rounded-tl-md rounded-tr-md overflow-hidden">
-                      <img src="/images/car1.avif" />
-                    </CardHeader>
-                    <CardContent className="p-4">
-                      <p className="font-bold mb-2 text-slate-800">
-                        Red Ferrari
-                      </p>
-                      <p className="mb-1">Model SF90</p>
-                      <p>
-                        Year: <i>2025</i>
-                      </p>
-                      <p>
-                        Added: <i>26/12/2024</i>
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </div>
-            );
-          })
         ) : (
-          <p className="mt-6 text-center">No vehicle profiles found</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-5">
+            {vehicleProfiles.length > 0 ? (
+              vehicleProfiles.map((vehicleProfile) => {
+                return (
+                  <Link
+                    to={"/vehicle-profiles/details/" + vehicleProfile.id}
+                    key={vehicleProfile.id}
+                  >
+                    <Card className="hover:border-slate-700  rounded-tl-xl rounded-tr-xl overflow-hidden">
+                      <CardHeader className="p-0 aspect-square bg-[#eee]">
+                        <img src={vehicleProfile.photosOfVehicle} />
+                      </CardHeader>
+                      <CardContent className="p-4">
+                        <p className="font-bold mb-2 text-slate-800">
+                          {vehicleProfile.name}
+                        </p>
+                        <p className="mb-1">{vehicleProfile.make}</p>
+                        <p>
+                          Model Year: <i>{vehicleProfile.modelYear}</i>
+                        </p>
+                        <p>
+                          Added: <i>{vehicleProfile.createdAtFormatted}</i>
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                );
+              })
+            ) : (
+              <p className="mt-6 text-center">No vehicle profiles found</p>
+            )}
+          </div>
         )}
       </div>
     </>

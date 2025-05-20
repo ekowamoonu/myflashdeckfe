@@ -2,36 +2,33 @@ import DashboardTitle from "@/core/shared-components/DashboardTitle";
 import { columns, ExpenseRecord } from "./table/columns";
 import { DataTable } from "./table/data-table";
 import { Button } from "@/components/ui/button";
-import { CirclePlus } from "lucide-react";
+import { CirclePlus, Loader } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { processApiCallErrors } from "@/core/helpers/helpers";
+import axios from "axios";
 
 const Index = () => {
-  const expenseRecords: ExpenseRecord[] = [
-    {
-      id: 2,
-      amount: 25,
-      category: "Oil change",
-      comments: "Was too expensive",
-      expenseDate: "1st January, 2025",
-      createdAt: "31st December, 2024",
-    },
-    {
-      id: 2,
-      amount: 25,
-      category: "Oil change",
-      comments: "Was too expensive",
-      expenseDate: "1st January, 2025",
-      createdAt: "31st December, 2024",
-    },
-    {
-      id: 2,
-      amount: 25,
-      category: "Oil change",
-      comments: "Was too expensive",
-      expenseDate: "1st January, 2025",
-      createdAt: "31st December, 2024",
-    },
-  ];
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [expenseRecords, setExpenseRecords] = useState<ExpenseRecord[]>([]);
+
+  useEffect(() => {
+    const getExpenseRecords = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get<{ data: ExpenseRecord[] }>(
+          "/expenses"
+        );
+        setExpenseRecords(response.data.data);
+      } catch (error) {
+        processApiCallErrors(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    getExpenseRecords();
+  }, []);
 
   return (
     <>
@@ -44,7 +41,13 @@ const Index = () => {
             </Link>
           </Button>
         </div>
-        <DataTable columns={columns} data={expenseRecords} />
+        {isLoading ? (
+          <p className="mt-6 flex items-center justify-center">
+            <Loader />
+          </p>
+        ) : (
+          <DataTable columns={columns} data={expenseRecords} />
+        )}
       </div>
     </>
   );

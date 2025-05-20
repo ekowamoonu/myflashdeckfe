@@ -14,9 +14,12 @@ export type ExpenseRecord = {
   id: number;
   amount: number;
   category: string;
+  isFuelExpense: string;
+  isMaintenanceExpense: string;
+  litresOfFuelPurchased: number;
   comments: string;
-  expenseDate: string;
-  createdAt: string;
+  expenseDateFormatted: string;
+  createdAtFormatted: string;
 };
 
 export const columns: ColumnDef<ExpenseRecord>[] = [
@@ -33,15 +36,27 @@ export const columns: ColumnDef<ExpenseRecord>[] = [
     header: "Category",
   },
   {
+    accessorKey: "isFuelExpense",
+    header: "Fuel",
+  },
+  {
+    accessorKey: "isMaintenanceExpense",
+    header: "Maintenance",
+  },
+  {
+    accessorKey: "litresOfFuelPurchased",
+    header: "Litres of fuel (L)",
+  },
+  {
     accessorKey: "comments",
     header: "Comments",
   },
   {
-    accessorKey: "expenseDate",
+    accessorKey: "expenseDateFormatted",
     header: "Expense date",
   },
   {
-    accessorKey: "createdAt",
+    accessorKey: "createdAtFormatted",
     header: "Recorded on",
   },
   {

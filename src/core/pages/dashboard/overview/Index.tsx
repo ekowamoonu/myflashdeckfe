@@ -126,22 +126,7 @@ const Index = () => {
                 variant={"outline"}
                 className="w-full mb-4"
               >
-                <Link to="#"> Record new maintenance</Link>
-              </Button>
-            </p>
-            <p>
-              <Button
-                asChild
-                size={"lg"}
-                variant={"outline"}
-                className="w-full mb-4"
-              >
                 <Link to="#"> Record new expense </Link>
-              </Button>
-            </p>
-            <p>
-              <Button size={"lg"} variant={"outline"} className="w-full">
-                <Link to="#"> Record new purchased fuel</Link>
               </Button>
             </p>
           </div>
