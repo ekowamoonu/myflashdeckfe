@@ -2,7 +2,7 @@ const LoadingScreen = () => {
   return (
     <div className="w-full min-h-svh bg-white flex items-center justify-center">
       <div className="w-[20%]">
-        <img src="/images/page-loading.gif" alt="" />
+        <img src="/images/page-loading.svg" alt="" />
       </div>
     </div>
   );

@@ -11,14 +11,8 @@ import EditVehicleProfile from "./core/pages/dashboard/vehicle_profiles/edit/Ind
 import Expenses from "./core/pages/dashboard/expenses/Index";
 import CreateNewExpenseRecord from "./core/pages/dashboard/expenses/create/Index";
 import EditExpenseRecord from "./core/pages/dashboard/expenses/edit/Index";
-import axios from "axios";
-function App() {
-  axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
-  axios.defaults.headers.common["Content-Type"] = "application/json";
-  axios.defaults.headers.common[
-    "Authorization"
-  ] = `Bearer ${localStorage.getItem("auth_token")}`;
 
+function App() {
   return (
     <>
       <BrowserRouter>

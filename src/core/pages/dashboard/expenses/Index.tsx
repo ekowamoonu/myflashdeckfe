@@ -7,10 +7,18 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { processApiCallErrors } from "@/core/helpers/helpers";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [expenseRecords, setExpenseRecords] = useState<ExpenseRecord[]>([]);
+
+  const onDelete = (id: number) => {
+    setExpenseRecords((prevRecords) =>
+      prevRecords.filter((record) => record.id !== id)
+    );
+    toast("Poof! Expense record deleted successfully", { type: "success" });
+  };
 
   useEffect(() => {
     const getExpenseRecords = async () => {
@@ -32,6 +40,7 @@ const Index = () => {
 
   return (
     <>
+      <ToastContainer />
       <DashboardTitle>Expenses</DashboardTitle>
       <div className="bg-white mt-6 p-6 rounded-md">
         <div className="flex justify-end mb-6 ">
@@ -46,7 +55,7 @@ const Index = () => {
             <Loader />
           </p>
         ) : (
-          <DataTable columns={columns} data={expenseRecords} />
+          <DataTable columns={columns({ onDelete })} data={expenseRecords} />
         )}
       </div>
     </>

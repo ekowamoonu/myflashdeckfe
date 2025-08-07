@@ -68,13 +68,12 @@ const Index = () => {
       formData.append("photoOfVehicle", selectedFile);
     }
     try {
-      await axios.patch("/vehicle-profiles", formData, {
+      await axios.post("/vehicle-profiles/" + id, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
       toast("Vehicle profile created successfully", { type: "success" });
-      form.reset();
     } catch (error) {
       processApiCallErrors(error);
     } finally {

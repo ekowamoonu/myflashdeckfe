@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
-import axios from "axios";
+import apiClient from "@/lib/axios.ts";
 import { useState, useEffect } from "react";
 import LoadingScreen from "../shared-components/LoadingScreen";
 
@@ -17,7 +17,7 @@ const AuthenicatedCheck = () => {
   useEffect(() => {
     const checkLogin = async () => {
       try {
-        await axios.get("/check-login");
+        await apiClient.get("/check-login");
         setIsAuthenticated(true);
       } catch (error) {
         console.log(error);
