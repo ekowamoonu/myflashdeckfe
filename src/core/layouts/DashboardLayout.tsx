@@ -1,17 +1,27 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {File, LayoutDashboard, Plus} from "lucide-react";
+import {Button} from "@/components/ui/button.tsx";
+
 
 const DashboardLayout = ({children}: { children: React.ReactNode }) => {
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.clear();
+        navigate("/login");
+    }
+
     return (
         <div className="flex h-screen">
             {/* sidebar */}
             <div className="w-64 fixed flex flex-col left-0 top-0 h-full bg-white">
                 {/* links */}
-                <div className="links">
+                <div className="flex-1">
                     <div className="logo bg-white p-4">
                         <img src="/images/logo.svg" alt="Logo"/>
                     </div>
-                    <div className="mt-6 text-md">
+                    <div className="mt-1 text-md">
                         <ul className="text-sm p-4">
                             <NavLink to="/overview" className={({isActive}: { isActive: boolean }) => `block text-[#586380] font-bold  cursor-pointer transition-all
                  hover:bg-[#e7edee] rounded-lg mb-2 hover:text-black active:bg-slate-500 ${isActive ? "bg-[#edefff] text-[#4255ff]" : ""}`}>
@@ -35,10 +45,14 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
                                 </li>
                             </NavLink>
                         </ul>
+
                     </div>
                 </div>
                 {/* footer */}
-                <div className="footer"></div>
+                <div className="footer">
+                    <Button onClick={handleLogout} variant={"secondary"}
+                            className={"w-full rounded-none"}>Logout</Button>
+                </div>
             </div>
 
             {/* content */}

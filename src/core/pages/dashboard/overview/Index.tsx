@@ -153,7 +153,7 @@ const Index = () => {
                                             study
                                             sets yet.</p>
                                         <Button asChild>
-                                            <Link to="/flashcard-sets/create">
+                                            <Link to="/flashcard-sets/create" className={"pt-6 pl-2"}>
                                                 <Plus/> Create study set
                                             </Link>
                                         </Button>
