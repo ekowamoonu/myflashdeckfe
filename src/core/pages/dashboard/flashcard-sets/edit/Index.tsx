@@ -1,7 +1,7 @@
 import {Button} from "@/components/ui/button";
 
 import DashboardTitle from "@/core/shared-components/DashboardTitle";
-import {ArrowLeft, ArrowRight, DeleteIcon, Loader2, Pen, Plus, Save, TrashIcon} from "lucide-react";
+import {ArrowLeft, ArrowRight, Loader2, Pen, Plus, Save, TrashIcon} from "lucide-react";
 import {useForm} from "react-hook-form";
 import {Link, useParams} from "react-router-dom";
 import {z} from "zod";
@@ -60,9 +60,9 @@ const Index = () => {
 
     // Flipping and sliding cards
     const [cardFlipped, setCardFlipped] = useState<boolean>(false);
-    const [slideDirection, setSlideDirection] = useState<"next" | "prev">("next");
+    // const [slideDirection, setSlideDirection] = useState<"next" | "prev">("next");
     const [currentIndex, setCurrentIndex] = useState<number>(0);
-    const [isAnimating, setIsAnimating] = useState(false);
+    // const [isAnimating, setIsAnimating] = useState(false);
 
     // Dialogs
     const [openNewCardDialog, setOpenNewCardDialog] = useState(false);
@@ -379,11 +379,11 @@ const Index = () => {
                                                 size={`icon`}>
                                             <TrashIcon/>
                                         </Button>
+                                        {/*${slideDirection === "next" && isAnimating ? "scale-[0.1]" : ""}*/}
+                                        {/*${slideDirection === "prev" && isAnimating ? "scale-1" : ""}*/}
                                         <div key={flashcardSetData?.flashCards[currentIndex].id}
                                              className={`relative transition-all ease-in-out duration-500 
                                                     ${cardFlipped ? "rotate-x-180" : ""}
-                                                     ${slideDirection === "next" && isAnimating ? "scale-[0.1]" : ""}
-                                                    ${slideDirection === "prev" && isAnimating ? "scale-1" : ""}
                                                     bg-white w-full cursor-pointer transform-style-preserve-3d h-full 
                                                     text-3xl  
                                                     shadow-[0_0_2rem_0_#282E3E1A] 
