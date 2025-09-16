@@ -72,13 +72,16 @@ const Index = () => {
     const [currentlySelectedCard, setCurrentlySelectedCard] = useState<IFlashcard>({} as IFlashcard);
 
 
-    async function getFlashcardSetData() {
+    async function getFlashcardSetData(initializeCurrentlySelectedCard: boolean = false) {
         try {
             setIsLoading(true);
             const response = await apiClient.get<{ data: IFlashcardSet }>(
                 `/flashcard-sets/${id}`
             );
             setFlashcardSetData(response.data.data);
+            if (initializeCurrentlySelectedCard) {
+                setCurrentlySelectedCard(response.data.data?.flashCards[0] ?? {} as IFlashcard);
+            }
         } catch (error) {
             processApiCallErrors(error);
         } finally {
@@ -172,7 +175,7 @@ const Index = () => {
     }
 
     useEffect(() => {
-        getFlashcardSetData();
+        getFlashcardSetData(true);
     }, []);
 
     useEffect(() => {
