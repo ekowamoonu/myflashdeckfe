@@ -13,6 +13,10 @@ const buttonVariants = cva(
                     "bg-[#4255ff] text-neutral-50 shadow hover:bg-[#4255ff]/90 dark:bg-neutral-50 dark:text-neutral-900 dark:hover:bg-neutral-50/90",
                 destructive:
                     "bg-red-500 text-neutral-50 shadow-sm hover:bg-red-500/90 dark:bg-red-900 dark:text-neutral-50 dark:hover:bg-red-900/90",
+                warning:
+                    "bg-[#FFCD1F] text-black shadow-sm hover:bg-[#FFCD1F]/90 dark:bg-[#FFCD1F] dark:text-black dark:hover:bg-[#FFCD1F]/90",
+                success:
+                    "bg-teal-600 text-white shadow-sm hover:bg-teal-600/90 dark:bg-teal-600  dark:text-black dark:hover:bg-teal-600/90",
                 outline:
                     "border border-neutral-200 bg-white shadow-sm hover:bg-neutral-100 hover:text-neutral-900 dark:border-neutral-800 dark:bg-neutral-950 dark:hover:bg-neutral-800 dark:hover:text-neutral-50",
                 secondary:
@@ -21,7 +25,7 @@ const buttonVariants = cva(
                 link: "text-neutral-900 underline-offset-4 hover:underline dark:text-neutral-50",
             },
             size: {
-                default: "h-9 px-4 py-[1.6em]",
+                default: "h-9 px-4 py-[1.4em]",
                 sm: "h-8 rounded-md px-3 text-xs",
                 lg: "h-10 rounded-md px-8",
                 icon: "h-9 w-9",

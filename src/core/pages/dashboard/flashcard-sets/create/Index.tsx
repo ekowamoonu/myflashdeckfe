@@ -35,6 +35,8 @@ import {toast, ToastContainer} from "react-toastify";
 import {processApiCallErrors} from "@/core/helpers/helpers";
 import {useState} from "react";
 import apiClient from "@/lib/axios.ts";
+import {useNavigate} from "react-router-dom";
+import {IFlashcardSet} from "@/core/interfaces/IFlashcardSet.ts";
 
 const formSchema = z.object({
     nameOfFlashCardSet: z.string(),
@@ -50,6 +52,7 @@ const Index = () => {
     });
     const [isCreating, setIsCreating] = useState<boolean>(false);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const navigate = useNavigate();
 
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files[0]) {
@@ -66,7 +69,7 @@ const Index = () => {
         }
 
         try {
-            await apiClient.post("/flashcard-sets", formData, {
+            const response = await apiClient.post<{ data: IFlashcardSet }>("/flashcard-sets", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -74,6 +77,7 @@ const Index = () => {
             toast("New study set created successfully", {type: "success"});
             form.reset();
             setSelectedFile(null);
+            navigate("/flashcard-sets/details/" + response.data.data.id);
         } catch (error) {
             processApiCallErrors(error);
         } finally {

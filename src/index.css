@@ -3,16 +3,37 @@
 @tailwind utilities;
 
 :root {
-  font-family:  "Nata Sans", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: "Nata Sans", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @layer base {
-  :root {
-    --radius: 0.5rem;
-  }
+    :root {
+        --radius: 0.5rem;
+    }
+}
+
+/* globals.css */
+.perspective {
+    perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+    transform-style: preserve-3d;
+}
+
+.backface-hidden {
+    backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+    transform: rotateY(180deg);
+}
+
+.rotate-x-180 {
+    transform: rotateX(180deg);
 }
