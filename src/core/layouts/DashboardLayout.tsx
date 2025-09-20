@@ -16,7 +16,7 @@ const DashboardLayout = ({children}: { children: React.ReactNode }) => {
         <div className="flex h-screen">
             {/* sidebar */}
             <div className="w-64 fixed flex flex-col left-0 top-0 h-full bg-white">
-                {/* links */}
+                {/* linkss */}
                 <div className="flex-1">
                     <div className="logo bg-white p-4">
                         <img src="/images/logo.svg" alt="Logo"/>
