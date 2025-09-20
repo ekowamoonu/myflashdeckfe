@@ -119,7 +119,8 @@ const Index = () => {
                                     name="fileToUpload"
                                     render={({field}) => (
                                         <FormItem className="space-y-1 mb-2">
-                                            <FormLabel>Data file to upload: </FormLabel>
+                                            <FormLabel>Data file to upload: <span className={`text-red-500`}>*Only PDFs allowed</span>
+                                            </FormLabel>
                                             <div
                                                 className={"h-[200px] bg-[#f6f7fb] flex justify-center items-center flex-col rounded-md"}>
                                                 <FormControl>
