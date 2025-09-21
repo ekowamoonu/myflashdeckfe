@@ -1,50 +1,59 @@
-# React + TypeScript + Vite
+# 📚 Flashdeck
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Flashdeck is a side project that turns **PDF course materials into interactive flashcards** using AI. The goal is to
+make studying easier by breaking down dense text into quick, reviewable cards.
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** [https://stunning-syrniki-b95c8d.netlify.app/](https://stunning-syrniki-b95c8d.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Upload PDF course materials
+- Extract text automatically
+- Generate flashcards via OpenAI in structured JSON format
+- Store flashcards in MariaDB
+- Study flashcards in a clean React interface
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🛠️ Tech Stack
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Frontend**: React + Tailwind CSS + shadcn/ui
+- **Backend**: Laravel
+- **Database**: MariaDB
+- **AI Integration**: OpenAI (via `openai-php` package)
+- **Deployment**: Ubuntu VPS
+- **CI/CD**: GitHub Actions
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+⚠️ Note: The current version is **not optimized for mobile** (time constraints).
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+---
+
+## ⚙️ How It Works
+
+1. Upload a PDF file.
+2. Backend extracts text from the file.
+3. Text is sent to OpenAI with a JSON schema for structured flashcards.
+4. Flashcards are stored in the database and displayed for studying.
+
+---
+
+## 📌 Roadmap
+
+- [ ] Mobile responsiveness
+- [ ] Spaced repetition algorithm
+- [ ] Support for multiple PDFs
+- [ ] Improved text chunking for large documents
+
+---
+
+## 🤝 Contributing
+
+This is a learning side project, but suggestions and feedback are welcome!
+
+---
+
+## 📄 License
+
+MIT  
